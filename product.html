@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6A11CB, #2575FC);
+            color: #fff;
+        }
+/* Navbar Styles */
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensure navbar is on top */
+  padding: 15px 20px;
+  background-color: #333; /* Optional: Dark background */
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  padding-top: 60px; /* Adjust padding to prevent content from being hidden under the fixed navbar */
+}
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            gap: 40px;
+        }
+
+        .product-details {
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .swiper {
+            width: 60%;
+            max-width: 700px;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .swiper-slide {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .size-selector {
+            margin: 20px 0;
+        }
+
+        .size-selector label {
+            margin-right: 15px;
+        }
+
+        .size-selector input {
+            margin-right: 10px;
+        }
+
+        .add-to-cart {
+            background: #FFD700;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: #FF6F61;
+        }
+
+        #nomi {
+            color: #FFD700;
+        }
+        body {
+    padding-top: 60px; /* Adjust this value if your navbar height changes */
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+        aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="konsta.html">konsta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="timur.html">timur alixov</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="komol.html">troll.uz</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="kunduziy.html">kunduziy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html">savatcha</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" style="width: 300px;" id="search" type="search" placeholder="Search"
+            aria-label="Search">
+        </form>
+        <div class="auth d-flex align-items-center">
+          <a class="btn btn-outline-light m-2" href="/signIn.html">Sign In</a>
+          <a class="btn btn-outline-light m-2" href="./signup.html">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+    <!-- Product Details -->
+    <div class="product-details">
+        <h1>Tovar nomi: <span id="nomi"></span></h1>
+        <p>Brend: <span id="brend"></span></p>
+        <p>Narxi: <span id="narxi"></span> USD</p>
+
+        <div class="size-selector">
+            <label><input type="radio" name="size" value="S"> S</label>
+            <label><input type="radio" name="size" value="M"> M</label>
+            <label><input type="radio" name="size" value="L"> L</label>
+            <label><input type="radio" name="size" value="XL"> XL</label>
+            <label><input type="radio" name="size" value="XXL"> XXL</label>
+        </div>
+
+        <button class="add-to-cart" id="addToCartButton">Add to Cart</button>
+    </div>
+
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        let urlString = window.location.search;
+        let urlParams = new URLSearchParams(urlString);
+        let id = urlParams.get("id");
+        let product = clothes.find(t => t.id == id);
+
+        if (product) {
+            let nomi = document.querySelector("#nomi");
+            nomi.innerHTML = product.nomi || "No name";
+            document.querySelector("#brend").innerHTML = product.brend || "No brand";
+            document.querySelector("#narxi").innerHTML = product.narxi || "No price";
+
+            product.rasmi.forEach(rasmcha => {
+                let swiperDiv = document.createElement("div");
+                swiperDiv.classList.add("swiper-slide");
+                swiperDiv.innerHTML = `<img src="${rasmcha}" alt="Product Image">`;
+                document.querySelector(".swiper-wrapper").append(swiperDiv);
+            });
+
+            swiper.update(); // Swiper yangilash
+        } else {
+            document.querySelector("#nomi").innerHTML = "Tovar topilmadi!";
+        }
+    });
+
+    // Add to Cart Functionality
+    document.getElementById("addToCartButton").addEventListener("click", () => {
+        let selectedSize = document.querySelector('input[name="size"]:checked')?.value;
+        if (!selectedSize) {
+            alert("Please select a size.");
+            return;
+        }
+
+        let urlString = window.location.search;
+        let urlParams = new URLSearchParams(urlString);
+        let id = urlParams.get("id");
+        let product = clothes.find(t => t.id == id);
+
+        if (product) {
+            // Save product details in localStorage
+            let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+            cartItems.push({ ...product, selectedSize });
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+            // Redirect to cart.html
+            window.location.href = "cart.html";
+        } else {
+            alert("Product not found!");
+        }
+    });
+</script>
+
+
+<script src="script.js"></script>
+<script src="scpt.js"></script>
+<script src="karichide.js"></script>
+</body>
+
+</html>
