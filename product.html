@@ -199,6 +199,61 @@ body {
 </html>
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Foydalanuvchini tekshirish
+  const userEmail = localStorage.getItem("email");
+  const userPassword = localStorage.getItem("parol");
+
+  if (!userEmail || !userPassword) {
+    // Agar foydalanuvchi tizimga kirmagan bo'lsa, "signIn.html"ga yo'naltiring
+    alert("Avval tizimga kiring!");
+    window.location.href = "signIn.html";
+  }
+
+  // Tovar ma'lumotlarini yuklash
+  let urlString = window.location.search;
+  let urlParams = new URLSearchParams(urlString);
+  let id = urlParams.get("id");
+  let product = clothes.find(t => t.id == id);
+
+  if (product) {
+    // Ma'lumotlarni to'ldirish
+    document.querySelector("#nomi").innerHTML = product.nomi || "No name";
+    document.querySelector("#brend").innerHTML = product.brend || "No brand";
+    document.querySelector("#narxi").innerHTML = product.narxi || "No price";
+
+    product.rasmi.forEach(rasmcha => {
+      let swiperDiv = document.createElement("div");
+      swiperDiv.classList.add("swiper-slide");
+      swiperDiv.innerHTML = `<img src="${rasmcha}" alt="Product Image">`;
+      document.querySelector(".swiper-wrapper").append(swiperDiv);
+    });
+
+    swiper.update(); // Swiperni yangilash
+  } else {
+    document.querySelector("#nomi").innerHTML = "Tovar topilmadi!";
+  }
+
+  // Savatchaga qo'shish funksiyasi
+  document.getElementById("addToCartButton").addEventListener("click", () => {
+    let selectedSize = document.querySelector('input[name="size"]:checked')?.value;
+    if (!selectedSize) {
+      alert("Please select a size.");
+      return;
+    }
+
+    if (product) {
+      let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+      cartItems.push({ ...product, selectedSize });
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      window.location.href = "cart.html";
+    } else {
+      alert("Product not found!");
+    }
+  });
+});
+
+
     var swiper = new Swiper(".mySwiper", {
         effect: "coverflow",
         grabCursor: true,
